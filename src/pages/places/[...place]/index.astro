@@ -1,0 +1,19 @@
+---
+import Dump from "@src/components/Dump.astro";
+import {fetchWeatherForPlace} from "@src/utils/fetchWeather"
+import {getUserSettingsObj} from "@src/utils/getUserSettings";
+
+const {place} = Astro.params;
+
+const weather = await fetchWeatherForPlace(place);
+const userSettings = getUserSettingsObj(Astro);
+
+---
+
+<p>Place: {place}</p>
+
+<h2>Weather</h2>
+<Dump data={weather} />
+
+<h2>Settings</h2>
+<Dump data={userSettings} />
